@@ -70,10 +70,10 @@ public class SlowServiceIntegrationTest
 
     /**
      * <pre>
-     * Fetch messages in parallel from slow services.
-     * {@link Executors#newCachedThreadPool} pool creates new threads as needed, but reuses previously constructed threads when they are available.
-     * 
-     * The result takes 996 milliseconds on my machine.
+     * Fetch messages in the different pools:
+     *  - Executors#newCachedThreadPool pool creates new threads as needed, but reuses previously constructed threads when they are available. The result takes 996 milliseconds on my machine;
+     *  - Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()) takes 4853 milliseconds;
+     *  - Executors.newWorkStealingPool() takes 4506 milliseconds.
      * </pre>
      */
     @Test
@@ -136,7 +136,7 @@ public class SlowServiceIntegrationTest
      * </pre>
      */
     @Test
-    void testParallelStream() throws Exception
+    void testGetMessagesInParallelStream() throws Exception
     {
         final int count = 100;
 
@@ -167,7 +167,7 @@ public class SlowServiceIntegrationTest
      * </pre>
      */
     @Test
-    void testGetMessageInForkJoin() throws Exception
+    void testGetMessagesInForkJoin() throws Exception
     {
         final int count = 100;
 
