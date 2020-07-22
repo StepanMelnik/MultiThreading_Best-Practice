@@ -47,17 +47,27 @@ There are the following cases to compare performance:
      - Executors.newWorkStealingPool() takes **4506 milliseconds**.
 
   
+### Completable Future
 
-
-
-
-
-
- 
+If your business logic uses a flow to work with depend on future that may be used as a completion stage, use s solution prepared in <a href="https://github.com/StepanMelnik/MultiThreading_Examples#completablefuture">CompletableFuture</a> test cases.
 
 
 ### Immutable
-TODO
+An immutable object is an object whose internal state remains constant after it has been entirely created. Since the internal state of an immutable object remains constant in time, we can share it safely among multiple threads.
+
+#### Immutable POJO
+
+Immutable POJO implemented in <a href="https://github.com/StepanMelnik/MultiThreading_BestPractice/blob/master/src/main/java/com/sme/multithreading/model/Message.java">Message.java</a> class.
+
+#### Immutable Collections
+
+<a href="https://github.com/google/guava/wiki">Guava</a> has good API to create immutable collections.
+
+See examples in <a href="https://github.com/StepanMelnik/MultiThreading_Examples/blob/master/src/test/java/com/sme/multithreading/immutable/ImmutableCollectionTest.java">ImmutableCollectionTest</a> test cases.
+
+### Guava Striped locking
+See example in <a href="https://github.com/StepanMelnik/MultiThreading_Examples/blob/master/src/test/java/com/sme/multithreading/guava/StrippedLockTest.java">StrippedLockTest</a> test to compare ReentrantLock against <a href="https://github.com/google/guava/wiki/StripedExplained">Striped</a> implementation in Guava.
+
 
 ### Example to calculate files on the file system
 TODO
